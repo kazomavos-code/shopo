@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shopee Affiliate Upload Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Affiliate Tools</p>
+          <h1>Shopee Upload Planner</h1>
+          <p class="muted">Siapkan konten affiliate dari link produk, video milik sendiri, caption, hashtag, jadwal, dan CSV upload.</p>
+        </div>
+
+        <section class="stats" aria-label="Ringkasan">
+          <div>
+            <span id="totalItems">0</span>
+            <small>Item</small>
+          </div>
+          <div>
+            <span id="readyItems">0</span>
+            <small>Siap</small>
+          </div>
+          <div>
+            <span id="missingItems">0</span>
+            <small>Perlu dicek</small>
+          </div>
+        </section>
+
+        <div class="notice">
+          <strong>Catatan aman</strong>
+          <p>Tool ini tidak scrape atau download video Shopee. Gunakan video yang kamu punya hak pakai, lalu export data untuk workflow resmi.</p>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="toolbar">
+          <a class="button-link" href="https://affiliate.shopee.co.id/" target="_blank" rel="noopener">Buka Shopee Affiliate</a>
+          <button id="addSample" class="ghost" type="button">Contoh data</button>
+          <button id="clearAll" class="ghost danger" type="button">Bersihkan</button>
+          <button id="exportCsv" type="button">Export CSV</button>
+        </div>
+
+        <section class="panel input-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Input cepat</h2>
+              <p class="muted">Tempel satu produk per baris. Format bebas: link saja, atau judul | link | harga | kategori.</p>
+            </div>
+            <button id="parseInput" type="button">Tambah ke antrian</button>
+          </div>
+          <textarea id="bulkInput" spellcheck="false" placeholder="Contoh:
+Tas selempang wanita | https://shopee.co.id/... | 59000 | Fashion
+https://shopee.co.id/produk-affiliate-kamu"></textarea>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Generator konten</h2>
+              <p class="muted">Pilih gaya caption dan jam upload, lalu terapkan ke item yang belum punya caption.</p>
+            </div>
+            <button id="applyGenerator" type="button">Generate</button>
+          </div>
+          <div class="controls">
+            <label>
+              Gaya caption
+              <select id="captionStyle">
+                <option value="softsell">Soft sell</option>
+                <option value="review">Review singkat</option>
+                <option value="promo">Promo langsung</option>
+              </select>
+            </label>
+            <label>
+              Niche
+              <input id="niche" value="daily finds" />
+            </label>
+            <label>
+              Mulai upload
+              <input id="startTime" type="datetime-local" />
+            </label>
+            <label>
+              Jarak upload menit
+              <input id="interval" type="number" min="5" value="30" />
+            </label>
+          </div>
+        </section>
+
+        <section class="queue-head">
+          <h2>Antrian upload</h2>
+          <label class="search">
+            Cari
+            <input id="search" placeholder="judul, kategori, status..." />
+          </label>
+        </section>
+
+        <section id="queue" class="queue" aria-live="polite"></section>
+      </section>
+    </main>
+
+    <template id="itemTemplate">
+      <article class="item">
+        <div class="item-main">
+          <div class="row">
+            <label>
+              Judul produk
+              <input class="title" />
+            </label>
+            <label>
+              Status
+              <select class="status">
+                <option>Draft</option>
+                <option>Siap Upload</option>
+                <option>Sudah Upload</option>
+                <option>Perlu Dicek</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Link affiliate
+              <input class="link" />
+            </label>
+            <label>
+              Harga
+              <input class="price" inputmode="numeric" />
+            </label>
+            <label>
+              Kategori
+              <input class="category" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              File video milik sendiri
+              <input class="video" placeholder="contoh: C:\Videos\tas-review.mp4" />
+            </label>
+            <label>
+              Jadwal upload
+              <input class="schedule" type="datetime-local" />
+            </label>
+          </div>
+          <label>
+            Caption
+            <textarea class="caption"></textarea>
+          </label>
+          <label>
+            Hashtag
+            <input class="hashtags" />
+          </label>
+        </div>
+        <div class="item-actions">
+          <button class="copyCaption ghost" type="button">Copy caption</button>
+          <button class="copyUpload ghost" type="button">Copy upload</button>
+          <button class="openLink ghost" type="button">Buka link</button>
+          <button class="remove danger" type="button">Hapus</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

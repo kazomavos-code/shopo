@@ -1,0 +1,290 @@
+:root {
+  color-scheme: light;
+  --ink: #17201b;
+  --muted: #637069;
+  --line: #d9e0dc;
+  --bg: #f7f8f5;
+  --panel: #ffffff;
+  --accent: #ee4d2d;
+  --accent-dark: #c63d22;
+  --good: #1f7a4d;
+  --warn: #9b5a13;
+  --danger: #b8332a;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+.button-link {
+  min-height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+button:hover,
+.button-link:hover {
+  background: var(--accent-dark);
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+button.ghost {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+button.ghost:hover {
+  background: #f2f4f1;
+}
+
+button.danger {
+  color: var(--danger);
+  border-color: #efc8c3;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #17201b;
+  color: #fff;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #ffb4a4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sidebar .muted {
+  color: #c5d1ca;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stats div,
+.notice {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.stats span {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.stats small {
+  color: #c5d1ca;
+}
+
+.notice p {
+  margin-bottom: 0;
+  color: #d9e0dc;
+  font-size: 14px;
+}
+
+.workspace {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.toolbar,
+.panel-head,
+.queue-head,
+.row,
+.controls,
+.item-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.toolbar {
+  justify-content: flex-end;
+}
+
+.panel,
+.item {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.panel-head,
+.queue-head {
+  justify-content: space-between;
+}
+
+.input-panel textarea {
+  min-height: 120px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+}
+
+label {
+  width: 100%;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 11px;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.12);
+}
+
+.queue {
+  display: grid;
+  gap: 14px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+}
+
+.item-main {
+  display: grid;
+  gap: 12px;
+}
+
+.item-actions {
+  align-self: start;
+  flex-direction: column;
+}
+
+.item-actions button {
+  width: 130px;
+}
+
+.empty {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  color: var(--muted);
+  background: #fff;
+}
+
+@media (max-width: 920px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    gap: 24px;
+  }
+
+  .controls,
+  .row,
+  .item {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .toolbar,
+  .panel-head,
+  .queue-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .item-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
